@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { Menu, X } from "lucide-react";
 import { useAuth, getDashboardPath } from "../context/AuthContext";
 import "../pages/home/navbar.css";
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const { user, isAuthenticated } = useAuth();
@@ -21,6 +23,11 @@ function Navbar() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  // Close mobile drawer when route changes
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
 
   const linkStyle = {
     color: "#51202a",
@@ -67,7 +74,6 @@ function Navbar() {
       <div
         className="navbar-container"
         style={{
-          width: "calc(100% - 80px)",
           maxWidth: "none",
           height: "72px",
           margin: "0 auto",
@@ -118,7 +124,7 @@ function Navbar() {
           <span>MealShare</span>
         </button>
 
-        {/* NAVIGATION */}
+        {/* NAVIGATION (DESKTOP & TABLET) */}
         <nav
           className="navbar-right"
           aria-label="Main navigation"
@@ -127,10 +133,8 @@ function Navbar() {
             marginRight: "0",
             padding: "0",
             width: "auto",
-            display: "flex",
             alignItems: "center",
             justifyContent: "flex-end",
-            gap: "30px",
             flex: "0 0 auto",
           }}
         >
@@ -141,7 +145,6 @@ function Navbar() {
               display: "flex",
               alignItems: "center",
               justifyContent: "flex-end",
-              gap: "28px",
               margin: "0",
               padding: "0",
               width: "auto",
@@ -248,7 +251,119 @@ function Navbar() {
             )}
           </div>
         </nav>
+
+        {/* MOBILE HAMBURGER TOGGLE */}
+        <button
+          type="button"
+          className="navbar-mobile-toggle"
+          onClick={() => setMobileMenuOpen((prev) => !prev)}
+          aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={mobileMenuOpen}
+        >
+          {mobileMenuOpen ? (
+            <X size={26} strokeWidth={2.2} />
+          ) : (
+            <Menu size={26} strokeWidth={2.2} />
+          )}
+        </button>
       </div>
+
+      {/* MOBILE DROPDOWN DRAWER */}
+      {mobileMenuOpen && (
+        <div className="navbar-mobile-drawer">
+          <div className="navbar-mobile-links">
+            <NavLink
+              to="/home"
+              className={({ isActive }) =>
+                `navbar-mobile-link ${isActive ? "active" : ""}`
+              }
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Home
+            </NavLink>
+
+            <NavLink
+              to="/meals"
+              className={({ isActive }) =>
+                `navbar-mobile-link ${isActive ? "active" : ""}`
+              }
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Meals
+            </NavLink>
+
+            <NavLink
+              to="/about"
+              className={({ isActive }) =>
+                `navbar-mobile-link ${isActive ? "active" : ""}`
+              }
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              About Us
+            </NavLink>
+          </div>
+
+          <div className="navbar-mobile-actions">
+            {!isAuthenticated ? (
+              <>
+                <button
+                  type="button"
+                  className="login-button"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    navigate("/login");
+                  }}
+                  style={{
+                    ...buttonStyle,
+                    width: "100%",
+                    border: "1px solid rgba(81, 32, 42, 0.2)",
+                    background: "transparent",
+                    color: "#51202a",
+                  }}
+                >
+                  Login
+                </button>
+
+                <button
+                  type="button"
+                  className="signup-button"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    navigate("/signup");
+                  }}
+                  style={{
+                    ...buttonStyle,
+                    width: "100%",
+                    border: "1px solid rgba(81, 32, 42, 0.2)",
+                    background: "transparent",
+                    color: "#51202a",
+                  }}
+                >
+                  Sign Up
+                </button>
+              </>
+            ) : (
+              <button
+                type="button"
+                className="dashboard-button"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  navigate(getDashboardPath(user?.role));
+                }}
+                style={{
+                  ...buttonStyle,
+                  width: "100%",
+                  border: "1px solid #7d1f2a",
+                  background: "#7d1f2a",
+                  color: "#ffffff",
+                }}
+              >
+                Dashboard
+              </button>
+            )}
+          </div>
+        </div>
+      )}
     </header>
   );
 }

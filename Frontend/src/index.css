@@ -4,10 +4,25 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+#root {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   font-family: Arial, sans-serif;
   background: #fffaf5;
   color: #2d2d2d;
+}
+
+img {
+  max-width: 100%;
 }
 
 button,

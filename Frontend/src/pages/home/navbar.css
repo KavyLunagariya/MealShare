@@ -509,11 +509,18 @@
 
 
 /* =========================================================
-   RESPONSIVE
+   RESPONSIVE DESIGN (TABLETS & MOBILE)
 ========================================================= */
 
-@media (max-width: 1100px) {
+.navbar-mobile-toggle {
+  display: none !important;
+}
 
+.navbar-mobile-drawer {
+  display: none;
+}
+
+@media (max-width: 1100px) {
   .navbar-container {
     width: calc(100% - 50px) !important;
   }
@@ -525,14 +532,11 @@
   .navbar-links {
     gap: 20px !important;
   }
-
 }
 
-
-@media (max-width: 850px) {
-
+@media (max-width: 900px) and (min-width: 769px) {
   .navbar-container {
-    width: calc(100% - 30px) !important;
+    width: calc(100% - 32px) !important;
   }
 
   .navbar-right {
@@ -543,7 +547,127 @@
     gap: 14px !important;
   }
 
+  .nav-link {
+    font-size: 13px !important;
+  }
+
+  .login-button,
+  .signup-button,
+  .dashboard-button {
+    padding: 0 16px !important;
+    font-size: 13px !important;
+  }
 }
+
+@media (max-width: 768px) {
+  .navbar {
+    height: 68px !important;
+  }
+
+  .navbar-container {
+    width: calc(100% - 24px) !important;
+    height: 68px !important;
+  }
+
+  .navbar-right {
+    display: none !important;
+  }
+
+  .navbar-mobile-toggle {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    margin-left: auto;
+    padding: 0;
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+    color: #51202a;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .navbar-mobile-toggle:hover {
+    background-color: rgba(81, 32, 42, 0.08);
+  }
+
+  .navbar-mobile-toggle:active {
+    transform: scale(0.94);
+  }
+
+  .navbar-mobile-drawer {
+    display: flex !important;
+    flex-direction: column;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    width: 100%;
+    background: #f7f1e8;
+    border-bottom: 1px solid rgba(81, 32, 42, 0.12);
+    box-shadow: 0 16px 32px rgba(46, 10, 15, 0.12);
+    padding: 18px 20px 24px;
+    box-sizing: border-box;
+    gap: 16px;
+    animation: mobileNavSlide 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    z-index: 1099;
+  }
+
+  @keyframes mobileNavSlide {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .navbar-mobile-links {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(81, 32, 42, 0.08);
+  }
+
+  .navbar-mobile-link {
+    display: flex;
+    align-items: center;
+    height: 42px;
+    padding: 0 12px;
+    border-radius: 8px;
+    color: #51202a;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .navbar-mobile-link:hover,
+  .navbar-mobile-link.active {
+    background: rgba(125, 31, 42, 0.08);
+    color: #7d1f2a;
+    font-weight: 700;
+  }
+
+  .navbar-mobile-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .navbar-mobile-actions button {
+    height: 42px !important;
+    width: 100% !important;
+    font-size: 14px !important;
+    border-radius: 999px !important;
+  }
+}
+
 /* Login and Sign Up hover effects */
 .login-button,
 .signup-button {
