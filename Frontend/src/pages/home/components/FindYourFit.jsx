@@ -2,6 +2,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   MapContainer,
@@ -98,6 +99,7 @@ function LocateUser({
 
 
 function FindYourFit() {
+  const navigate = useNavigate();
 
   const [meals, setMeals] =
     useState(() =>
@@ -418,11 +420,11 @@ function FindYourFit() {
 
             <button
               type="button"
-              onClick={() =>
-                alert(
-                  "Meal ordering will be connected here."
-                )
-              }
+              id="meal-plan-order-now-btn"
+              onClick={() => {
+                window.scrollTo(0, 0);
+                navigate("/meals");
+              }}
             >
               Order Now
               <span>

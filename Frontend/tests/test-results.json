@@ -8,7 +8,7 @@
     "stickyNavbar": true,
     "mobileToggle": "N/A",
     "errors": [],
-    "durationMs": 2639,
+    "durationMs": 3207,
     "screenshot": "Desktop_Home_Page.png"
   },
   {
@@ -20,7 +20,7 @@
     "stickyNavbar": true,
     "mobileToggle": "N/A",
     "errors": [],
-    "durationMs": 1739,
+    "durationMs": 1510,
     "screenshot": "Desktop_Meals_Page.png"
   },
   {
@@ -32,7 +32,7 @@
     "stickyNavbar": true,
     "mobileToggle": "N/A",
     "errors": [],
-    "durationMs": 1812,
+    "durationMs": 1683,
     "screenshot": "Desktop_About_Page.png"
   },
   {
@@ -44,7 +44,7 @@
     "stickyNavbar": true,
     "mobileToggle": "N/A",
     "errors": [],
-    "durationMs": 1303,
+    "durationMs": 1375,
     "screenshot": "Desktop_Login_Page.png"
   },
   {
@@ -56,7 +56,7 @@
     "stickyNavbar": true,
     "mobileToggle": "N/A",
     "errors": [],
-    "durationMs": 1206,
+    "durationMs": 1173,
     "screenshot": "Desktop_Signup_Page.png"
   },
   {
@@ -68,7 +68,7 @@
     "stickyNavbar": true,
     "mobileToggle": "N/A",
     "errors": [],
-    "durationMs": 1482,
+    "durationMs": 1199,
     "screenshot": "Desktop_Restaurant_Dashboard.png"
   },
   {
@@ -80,7 +80,7 @@
     "stickyNavbar": true,
     "mobileToggle": "N/A",
     "errors": [],
-    "durationMs": 1199,
+    "durationMs": 1233,
     "screenshot": "Desktop_Normal_Dashboard.png"
   },
   {
@@ -92,7 +92,7 @@
     "stickyNavbar": true,
     "mobileToggle": "N/A",
     "errors": [],
-    "durationMs": 2320,
+    "durationMs": 1922,
     "screenshot": "Tablet_Home_Page.png"
   },
   {
@@ -104,7 +104,7 @@
     "stickyNavbar": true,
     "mobileToggle": "N/A",
     "errors": [],
-    "durationMs": 1341,
+    "durationMs": 1387,
     "screenshot": "Tablet_Meals_Page.png"
   },
   {
@@ -116,7 +116,7 @@
     "stickyNavbar": true,
     "mobileToggle": "N/A",
     "errors": [],
-    "durationMs": 1387,
+    "durationMs": 1407,
     "screenshot": "Tablet_About_Page.png"
   },
   {
@@ -128,7 +128,7 @@
     "stickyNavbar": true,
     "mobileToggle": "N/A",
     "errors": [],
-    "durationMs": 1162,
+    "durationMs": 1151,
     "screenshot": "Tablet_Login_Page.png"
   },
   {
@@ -140,7 +140,7 @@
     "stickyNavbar": true,
     "mobileToggle": "N/A",
     "errors": [],
-    "durationMs": 1077,
+    "durationMs": 1090,
     "screenshot": "Tablet_Signup_Page.png"
   },
   {
@@ -152,7 +152,7 @@
     "stickyNavbar": true,
     "mobileToggle": "N/A",
     "errors": [],
-    "durationMs": 1099,
+    "durationMs": 1005,
     "screenshot": "Tablet_Restaurant_Dashboard.png"
   },
   {
@@ -164,7 +164,7 @@
     "stickyNavbar": true,
     "mobileToggle": "N/A",
     "errors": [],
-    "durationMs": 1133,
+    "durationMs": 1033,
     "screenshot": "Tablet_Normal_Dashboard.png"
   },
   {
@@ -176,7 +176,7 @@
     "stickyNavbar": true,
     "mobileToggle": "PASS",
     "errors": [],
-    "durationMs": 2195,
+    "durationMs": 2083,
     "screenshot": "Mobile_Home_Page.png"
   },
   {
@@ -188,7 +188,7 @@
     "stickyNavbar": true,
     "mobileToggle": "PASS",
     "errors": [],
-    "durationMs": 1665,
+    "durationMs": 1756,
     "screenshot": "Mobile_Meals_Page.png"
   },
   {
@@ -200,7 +200,7 @@
     "stickyNavbar": true,
     "mobileToggle": "PASS",
     "errors": [],
-    "durationMs": 1785,
+    "durationMs": 1800,
     "screenshot": "Mobile_About_Page.png"
   },
   {
@@ -212,7 +212,7 @@
     "stickyNavbar": true,
     "mobileToggle": "PASS",
     "errors": [],
-    "durationMs": 1601,
+    "durationMs": 1673,
     "screenshot": "Mobile_Login_Page.png"
   },
   {
@@ -224,7 +224,7 @@
     "stickyNavbar": true,
     "mobileToggle": "PASS",
     "errors": [],
-    "durationMs": 1463,
+    "durationMs": 1605,
     "screenshot": "Mobile_Signup_Page.png"
   },
   {
@@ -236,7 +236,7 @@
     "stickyNavbar": true,
     "mobileToggle": "PASS",
     "errors": [],
-    "durationMs": 1665,
+    "durationMs": 1568,
     "screenshot": "Mobile_Restaurant_Dashboard.png"
   },
   {
@@ -248,7 +248,7 @@
     "stickyNavbar": true,
     "mobileToggle": "PASS",
     "errors": [],
-    "durationMs": 1575,
+    "durationMs": 1698,
     "screenshot": "Mobile_Normal_Dashboard.png"
   }
 ]
