@@ -462,148 +462,24 @@
 }
 
 /* =========================================
-   GOOGLE AUTH MODAL
+   GOOGLE BUTTON LOADING & SPINNER
    ========================================= */
 
-.google-modal-backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(46, 10, 15, 0.6);
-    backdrop-filter: blur(4px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2000;
-    padding: 16px;
-    animation: fadeIn 0.2s ease forwards;
+.social-icon-btn.loading {
+    cursor: wait;
+    opacity: 0.85;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.google-modal-card {
-    background: #ffffff;
-    width: 100%;
-    max-width: 440px;
-    border-radius: 20px;
-    box-shadow: 0 20px 50px rgba(91, 32, 41, 0.3);
-    padding: 28px 24px 24px;
-    position: relative;
-    box-sizing: border-box;
-    animation: scaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes scaleUp {
-    from { transform: scale(0.92); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-
-.google-modal-close {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    width: 32px;
-    height: 32px;
+.google-spinner {
+    width: 20px;
+    height: 20px;
+    border: 2.5px solid #e0cfc7;
+    border-top-color: #5b2029;
     border-radius: 50%;
-    border: none;
-    background: #f7f1e8;
-    color: #5b2029;
-    font-size: 16px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s ease;
+    animation: googleSpin 0.6s linear infinite;
+    display: inline-block;
 }
 
-.google-modal-close:hover {
-    background: #ebdcd0;
-}
-
-.google-modal-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 12px;
-}
-
-.google-modal-header h2 {
-    margin: 0;
-    font-size: 20px;
-    color: #5b2029;
-    font-weight: 700;
-}
-
-.google-modal-desc {
-    margin: 0 0 16px;
-    color: #70575b;
-    font-size: 13px;
-    line-height: 1.5;
-}
-
-.google-modal-instructions {
-    background: #fbf5ec;
-    border: 1px solid #ebdcd0;
-    border-radius: 12px;
-    padding: 12px 14px;
-    margin-bottom: 18px;
-    font-size: 12px;
-    color: #5b2029;
-    line-height: 1.5;
-}
-
-.google-modal-instructions code {
-    background: #ffffff;
-    padding: 2px 6px;
-    border-radius: 6px;
-    font-size: 11px;
-    color: #e53935;
-    border: 1px solid #ebdcd0;
-    font-family: monospace;
-}
-
-.google-demo-box {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.google-demo-input {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 10px 14px;
-    border: 1.5px solid #d9c9bd;
-    border-radius: 10px;
-    font-size: 13.5px;
-    outline: none;
-    color: #5b2029;
-    transition: border-color 0.2s ease;
-}
-
-.google-demo-input:focus {
-    border-color: #5b2029;
-}
-
-.google-demo-btn {
-    width: 100%;
-    padding: 12px;
-    border-radius: 12px;
-    border: none;
-    background: #5b2029;
-    color: #ffffff;
-    font-size: 13.5px;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    transition: background 0.2s ease, transform 0.2s ease;
-}
-
-.google-demo-btn:hover {
-    background: #7a2935;
-    transform: translateY(-1px);
+@keyframes googleSpin {
+    to { transform: rotate(360deg); }
 }
