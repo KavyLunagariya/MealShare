@@ -54,8 +54,9 @@ function Navbar() {
     <header
       className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}
       style={{
-        position: "relative",
-        zIndex: 1000,
+        position: "sticky",
+        top: 0,
+        zIndex: 1100,
         width: "100%",
         height: "72px",
         background: "#f7f1e8",

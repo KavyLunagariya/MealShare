@@ -1,6 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./About.css";
+import heroBgImg from "../../assets/images/about/about-hero-bg.jpg";
+import freshFoodImg from "../../assets/images/about/about-fresh-food.jpg";
+import healthyMealImg from "../../assets/images/about/about-healthy-meal.jpg";
+import missionFoodImg from "../../assets/images/about/about-mission-food.jpg";
 
 const About = () => {
   const navigate = useNavigate();
@@ -66,6 +70,7 @@ const About = () => {
 
       {/* HERO */}
       <section className="about-hero">
+        <div className="about-hero-bg" style={{ backgroundImage: `url(${heroBgImg})` }}></div>
         <div className="about-hero-overlay"></div>
 
         <div className="about-hero-content">
@@ -97,15 +102,17 @@ const About = () => {
 
             <div className="about-main-image">
               <img
-                src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85"
+                src={freshFoodImg}
                 alt="Fresh food"
+                loading="eager"
               />
             </div>
 
             <div className="about-small-image">
               <img
-                src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=85"
+                src={healthyMealImg}
                 alt="Healthy meal"
+                loading="eager"
               />
             </div>
 
@@ -265,8 +272,9 @@ const About = () => {
           <div className="mission-image-wrap">
 
             <img
-              src="https://images.unsplash.com/photo-1593113646773-028c64a8f1b8?auto=format&fit=crop&w=1000&q=85"
+              src={missionFoodImg}
               alt="Community food sharing"
+              loading="lazy"
             />
 
             <div className="mission-floating-card">
@@ -490,7 +498,7 @@ const About = () => {
       {/* VISION */}
       <section className="vision-section">
 
-        <div className="vision-image"></div>
+        <div className="vision-image" style={{ backgroundImage: `url(${heroBgImg})` }}></div>
 
         <div className="vision-overlay"></div>
 
