@@ -7,7 +7,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: -50px 25px 25px;
+    padding: 30px 20px;
     box-sizing: border-box;
     background: #fbf5ec;
 }
@@ -336,33 +336,49 @@
     .signup-container {
         flex-direction: column;
         max-height: none;
+        max-width: 520px;
+        margin: 0 auto;
     }
 
     .signup-image-section {
         width: 100%;
-        height: 200px;
+        height: 190px;
+        min-height: 190px;
         clip-path: none;
         margin-right: 0;
     }
 
+    .signup-role-image.donor-image {
+        object-fit: contain;
+        object-position: center;
+        transform: scale(0.95);
+    }
+
     .signup-form-section {
-        padding: 32px 40px;
+        margin-left: 0;
+        padding: 30px 28px 20px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .signup-or-section {
         width: 100%;
-        flex-direction: row;
-        padding: 0;
+        flex-direction: column;
+        padding: 0 28px 24px;
         border-left: none;
         border-top: 1px solid #f0e4d8;
-        height: 60px;
+        height: auto;
+        box-sizing: border-box;
+        background: #ffffff;
     }
 
     .or-divider {
         flex-direction: row;
-        padding: 0 16px;
-        height: 100%;
+        padding: 12px 0;
+        height: auto;
         width: 100%;
+        align-items: center;
+        justify-content: center;
     }
 
     .or-line {
@@ -371,21 +387,76 @@
         height: 1px;
     }
 
+    .or-text {
+        padding: 0 14px;
+    }
+
     .signup-social-icons {
-        display: none;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding: 4px 0 0;
     }
 }
 
 @media (max-width: 540px) {
     .signup-page {
-        padding: 80px 12px 24px;
+        padding: 20px 14px;
+    }
+
+    .signup-container {
+        border-radius: 18px;
+    }
+
+    .signup-image-section {
+        height: 160px;
+        min-height: 160px;
     }
 
     .signup-form-section {
-        padding: 24px 20px;
+        padding: 22px 18px 18px;
+        margin-left: 0;
     }
 
     .signup-form-section h1 {
-        font-size: 24px;
+        font-size: 25px;
+    }
+
+    .signup-subtitle {
+        font-size: 12px;
+        margin-bottom: 14px;
+    }
+
+    .signup-role-selector {
+        height: 38px;
+        margin-bottom: 14px;
+    }
+
+    .signup-role-selector button {
+        font-size: 12px;
+    }
+
+    .signup-input-group label {
+        font-size: 10px;
+    }
+
+    .signup-input-group input {
+        font-size: 14px;
+        height: 34px;
+    }
+
+    .signup-button {
+        width: 100%;
+        padding: 11px 20px;
+        font-size: 13.5px;
+    }
+
+    .already-account {
+        font-size: 12.5px;
+    }
+
+    .signup-or-section {
+        padding: 0 18px 20px;
     }
 }

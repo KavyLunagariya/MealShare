@@ -276,21 +276,39 @@
     "Times New Roman",
     serif;
 
-  font-size: 45px;
+  font-size: 42px;
 
   font-weight: 500;
 
-  line-height: 0.95;
+  line-height: 1.15;
 
-  letter-spacing: -0.04em;
+  letter-spacing: -0.02em;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.map-overlay h3 span {
+  display: block;
 }
 
 .map-overlay h3 em {
+  display: block;
+
   color: #ef5361;
 
-  font-size: 27px;
+  font-size: 24px;
 
   font-style: normal;
+
+  font-weight: 600;
+
+  line-height: 1.2;
+
+  letter-spacing: 0.02em;
 }
 
 .map-overlay p {
@@ -693,80 +711,6 @@
 }
 
 
-@media (max-width: 700px) {
-
-  .find-your-fit {
-    padding:
-      70px
-      0
-      80px;
-  }
-
-  .find-your-fit-heading h2 {
-    font-size: 48px;
-  }
-
-  .find-your-fit-content {
-    gap: 16px;
-  }
-
-  .vadodara-map {
-    height: 600px;
-  }
-
-  .map-overlay {
-    width: calc(100% - 20px);
-
-    min-width: 0;
-
-    left: 10px;
-    bottom: 10px;
-
-    padding: 25px;
-
-    border-radius: 20px;
-  }
-
-  .map-overlay h3 {
-    font-size: 38px;
-  }
-
-  .meal-plan-card {
-    min-height: 400px;
-
-    padding: 30px;
-  }
-
-}
-
-
-@media (max-width: 480px) {
-
-  .find-your-fit-container {
-    width: 92%;
-  }
-
-  .find-your-fit-heading h2 {
-    font-size: 40px;
-  }
-
-  .vadodara-map {
-    height: 560px;
-  }
-
-  .map-overlay {
-    padding: 22px;
-  }
-
-  .map-overlay h3 {
-    font-size: 34px;
-  }
-
-  .meal-plan-card h3 {
-    font-size: 27px;
-  }
-
-}
 /* =========================================================
    LIVE LOCATION BUTTON
    ========================================================= */
@@ -774,8 +718,10 @@
 .map-location-button {
   position: absolute !important;
 
-  left: 28px;
-  bottom: 28px;
+  top: 22px;
+  left: 22px;
+  bottom: auto;
+  right: auto;
 
   z-index: 1000 !important;
 
@@ -860,24 +806,97 @@
   }
 
   .vadodara-map {
-    height: 440px;
+    height: 480px;
+  }
+
+  .meal-plan-card {
+    min-height: 360px;
   }
 }
 
 @media (max-width: 700px) {
+  .find-your-fit {
+    padding: 60px 0 70px;
+  }
+
   .find-your-fit-heading h2 {
-    font-size: clamp(34px, 8vw, 48px);
+    font-size: clamp(32px, 8vw, 44px);
+  }
+
+  .find-your-fit-content {
+    gap: 16px;
   }
 
   .vadodara-map {
-    height: 350px;
+    height: 480px;
     border-radius: 20px;
   }
 
+  .map-overlay {
+    width: calc(100% - 24px);
+    min-width: 0;
+    left: 12px;
+    bottom: 12px;
+    padding: 18px 20px;
+    border-radius: 18px;
+  }
+
+  .map-overlay h3 {
+    font-size: 28px;
+    gap: 2px;
+  }
+
+  .map-overlay h3 em {
+    font-size: 18px;
+  }
+
+  .map-overlay p {
+    margin: 8px 0 12px;
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  .map-label {
+    margin-bottom: 8px;
+  }
+
   .map-location-button {
-    left: 22px;
-    bottom: 22px;
-    padding: 12px 16px;
+    top: 14px;
+    left: 14px;
+    bottom: auto;
+    right: auto;
+    padding: 10px 14px;
     font-size: 10px;
+  }
+
+  .meal-plan-card {
+    min-height: 380px;
+    padding: 26px;
+  }
+}
+
+@media (max-width: 480px) {
+  .find-your-fit-container {
+    width: 92%;
+  }
+
+  .vadodara-map {
+    height: 470px;
+  }
+
+  .map-overlay {
+    padding: 15px 16px 13px;
+  }
+
+  .map-overlay h3 {
+    font-size: 25px;
+  }
+
+  .map-overlay h3 em {
+    font-size: 16px;
+  }
+
+  .meal-plan-card h3 {
+    font-size: 24px;
   }
 }

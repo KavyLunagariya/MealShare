@@ -356,11 +356,8 @@ function FindYourFit() {
 
 
               <h3>
-                Vadodara
-                <br />
-                <em>
-                  City
-                </em>
+                <span>Vadodara</span>
+                <em>City</em>
               </h3>
 
 
