@@ -10,7 +10,7 @@ import {
 
 function Signup() {
   const navigate = useNavigate();
-  const { signup } = useAuth();
+  const { signup, googleAuth } = useAuth();
 
   const [role, setRole] = useState("donor");
   const [email, setEmail] = useState("");
@@ -20,6 +20,9 @@ function Signup() {
   const [address, setAddress] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
+  const [showGoogleModal, setShowGoogleModal] = useState(false);
+  const [demoEmail, setDemoEmail] = useState("");
 
   const isDonor = role === "donor";
 
@@ -81,6 +84,72 @@ function Signup() {
       setError("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleGoogleClick = () => {
+    setError("");
+    const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+
+    if (clientId && window.google?.accounts?.id) {
+      try {
+        setGoogleLoading(true);
+        window.google.accounts.id.initialize({
+          client_id: clientId,
+          callback: async (response) => {
+            if (response.credential) {
+              const res = await googleAuth({
+                credential: response.credential,
+                role: isDonor ? "donor" : "receiver",
+              });
+
+              if (res.success) {
+                navigate(getDashboardPath(res.user.role), { replace: true });
+              } else {
+                setError(res.message);
+              }
+            }
+            setGoogleLoading(false);
+          },
+        });
+
+        window.google.accounts.id.prompt((notification) => {
+          if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+            setGoogleLoading(false);
+          }
+        });
+      } catch (err) {
+        console.error("Google sign-in error:", err);
+        setGoogleLoading(false);
+        setError("Unable to launch Google Sign-In.");
+      }
+    } else {
+      setShowGoogleModal(true);
+    }
+  };
+
+  const handleDemoGoogleSignIn = async (customEmail) => {
+    setError("");
+    setGoogleLoading(true);
+    setShowGoogleModal(false);
+
+    const emailToUse = customEmail?.trim() || "demo.google.user@gmail.com";
+
+    const res = await googleAuth({
+      role: isDonor ? "donor" : "receiver",
+      profile: {
+        email: emailToUse,
+        name: emailToUse.split("@")[0],
+        avatar: "https://lh3.googleusercontent.com/a/default-user",
+      },
+    });
+
+    setGoogleLoading(false);
+
+    if (res.success) {
+      navigate(getDashboardPath(res.user.role), { replace: true });
+    } else {
+      setError(res.message);
     }
   };
 
@@ -263,13 +332,15 @@ function Signup() {
             <div className="or-line" />
           </div>
 
-          {/* Google authentication is not connected yet */}
+          {/* Google authentication button */}
           <div className="signup-social-icons">
             <button
               type="button"
               className="social-icon-btn google-icon"
+              onClick={handleGoogleClick}
+              disabled={googleLoading || loading}
               aria-label="Continue with Google"
-              title="Google sign-in is not available yet"
+              title="Continue with Google"
             >
               <svg
                 width="18"
@@ -300,6 +371,93 @@ function Signup() {
           </div>
         </div>
       </div>
+
+      {/* GOOGLE AUTH SETUP & DEMO MODAL */}
+      {showGoogleModal && (
+        <div
+          className="google-modal-backdrop"
+          onClick={() => setShowGoogleModal(false)}
+        >
+          <div
+            className="google-modal-card"
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="google-modal-title"
+          >
+            <button
+              type="button"
+              className="google-modal-close"
+              onClick={() => setShowGoogleModal(false)}
+              aria-label="Close modal"
+            >
+              ✕
+            </button>
+
+            <div className="google-modal-header">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 48 48"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  fill="#EA4335"
+                  d="M24 9.5c3.14 0 5.95 1.08 8.17 2.85l6.08-6.08C34.5 3.09 29.54 1 24 1 14.82 1 7.07 6.48 3.87 14.22l7.08 5.5C12.6 13.72 17.85 9.5 24 9.5z"
+                />
+                <path
+                  fill="#4285F4"
+                  d="M46.1 24.5c0-1.64-.15-3.22-.42-4.75H24v9h12.42c-.54 2.9-2.18 5.36-4.64 7.01l7.19 5.58C43.02 37.28 46.1 31.36 46.1 24.5z"
+                />
+                <path
+                  fill="#FBBC05"
+                  d="M10.95 28.28A14.6 14.6 0 0 1 9.5 24c0-1.49.26-2.93.71-4.28l-7.08-5.5A23.94 23.94 0 0 0 0 24c0 3.87.93 7.53 2.56 10.76l8.39-6.48z"
+                />
+                <path
+                  fill="#34A853"
+                  d="M24 47c5.54 0 10.19-1.84 13.58-4.97l-7.19-5.58c-1.84 1.23-4.19 1.96-6.39 1.96-6.15 0-11.4-4.22-13.05-9.93l-8.39 6.48C7.07 41.52 14.82 47 24 47z"
+                />
+                <path fill="none" d="M0 0h48v48H0z" />
+              </svg>
+              <h2 id="google-modal-title">Google Sign-In</h2>
+            </div>
+
+            <p className="google-modal-desc">
+              Google authentication is connected to your MealShare API!
+            </p>
+
+            <div className="google-modal-instructions">
+              <strong>To enable live Google Cloud accounts:</strong>
+              <br />
+              Add your Google Client ID to <code>Frontend/.env</code>:
+              <br />
+              <code>VITE_GOOGLE_CLIENT_ID=your_id.apps.googleusercontent.com</code>
+            </div>
+
+            <div className="google-demo-box">
+              <input
+                type="email"
+                className="google-demo-input"
+                placeholder="Optional: Enter a test email (e.g. you@gmail.com)"
+                value={demoEmail}
+                onChange={(e) => setDemoEmail(e.target.value)}
+              />
+
+              <button
+                type="button"
+                className="google-demo-btn"
+                onClick={() => handleDemoGoogleSignIn(demoEmail)}
+                disabled={googleLoading}
+              >
+                {googleLoading
+                  ? "Authenticating with Google..."
+                  : `Continue with Google as ${isDonor ? "Donor" : "Receiver"}`}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

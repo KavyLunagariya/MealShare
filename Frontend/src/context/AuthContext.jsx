@@ -199,6 +199,47 @@ export function AuthProvider({ children }) {
     }
   };
 
+  const googleAuth = async ({ credential, role, profile }) => {
+    try {
+      const response = await fetch(`${API_URL}/google`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          credential,
+          role,
+          profile,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        return {
+          success: false,
+          message: data.message || "Google authentication failed.",
+        };
+      }
+
+      const sessionUser = saveSession(data.user, data.token);
+      setUser(sessionUser);
+
+      return {
+        success: true,
+        user: sessionUser,
+      };
+    } catch (error) {
+      console.error("Google authentication request failed:", error);
+
+      return {
+        success: false,
+        message:
+          "Cannot connect to MealShare server. Make sure the backend is running.",
+      };
+    }
+  };
+
   const logout = () => {
     localStorage.removeItem(AUTH_STORAGE_KEY);
     localStorage.removeItem(TOKEN_STORAGE_KEY);
@@ -212,6 +253,7 @@ export function AuthProvider({ children }) {
     isAuthenticated: Boolean(user && readToken()),
     signup,
     login,
+    googleAuth,
     logout,
   };
 

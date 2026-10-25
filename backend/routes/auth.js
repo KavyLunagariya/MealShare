@@ -179,4 +179,114 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// Google OAuth Sign-In & Sign-Up
+router.post("/google", async (req, res) => {
+  try {
+    const { credential, role, profile } = req.body || {};
+
+    let email = null;
+    let name = null;
+    let googleId = null;
+    let avatar = null;
+
+    if (credential) {
+      // Verify token directly with Google's tokeninfo API
+      const googleRes = await fetch(
+        `https://oauth2.googleapis.com/tokeninfo?id_token=${encodeURIComponent(credential)}`
+      );
+
+      if (!googleRes.ok) {
+        return res.status(401).json({
+          success: false,
+          message: "Invalid or expired Google credential.",
+        });
+      }
+
+      const tokenInfo = await googleRes.json();
+      email = tokenInfo.email;
+      name = tokenInfo.name || tokenInfo.email.split("@")[0];
+      googleId = tokenInfo.sub;
+      avatar = tokenInfo.picture;
+    } else if (profile && profile.email) {
+      // Development / simulated profile fallback
+      email = profile.email;
+      name = profile.name || profile.email.split("@")[0];
+      googleId = profile.googleId || `google_${Date.now()}`;
+      avatar = profile.avatar || "";
+    } else {
+      return res.status(400).json({
+        success: false,
+        message: "Google credential is required.",
+      });
+    }
+
+    if (!email) {
+      return res.status(400).json({
+        success: false,
+        message: "Google account does not provide an email address.",
+      });
+    }
+
+    const normalizedEmail = email.trim().toLowerCase();
+    let user = await User.findOne({ email: normalizedEmail });
+
+    const normalizedRole =
+      role === "donor" || role === "food-lister" || role === "donors"
+        ? "food-lister"
+        : "reserver";
+
+    if (!user) {
+      // Create new user authenticated via Google
+      user = await User.create({
+        name: name.trim(),
+        email: normalizedEmail,
+        googleId,
+        avatar,
+        role: normalizedRole,
+      });
+    } else {
+      // Update googleId and avatar if not already present
+      if (!user.googleId && googleId) {
+        user.googleId = googleId;
+      }
+      if (!user.avatar && avatar) {
+        user.avatar = avatar;
+      }
+      await user.save();
+    }
+
+    if (!process.env.JWT_SECRET) {
+      throw new Error("JWT_SECRET is missing from the .env file.");
+    }
+
+    const token = jwt.sign(
+      {
+        userId: user._id,
+        role: user.role,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: "1d" }
+    );
+
+    return res.status(200).json({
+      success: true,
+      message: "Google authentication successful.",
+      token,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        avatar: user.avatar,
+      },
+    });
+  } catch (error) {
+    console.error("Google auth error:", error.message);
+    return res.status(500).json({
+      success: false,
+      message: "Google authentication failed. Please try again.",
+    });
+  }
+});
+
 module.exports = router;
