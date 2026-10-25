@@ -21,6 +21,7 @@ dist
 dist-ssr
 build
 *.local
+tests/screenshots/
 
 # Editor directories and files
 .vscode/*

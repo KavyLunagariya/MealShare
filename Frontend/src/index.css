@@ -7,12 +7,12 @@
 html,
 body {
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 #root {
   max-width: 100%;
-  overflow-x: hidden;
+  overflow: visible;
 }
 
 body {
