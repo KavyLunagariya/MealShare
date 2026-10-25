@@ -14,9 +14,32 @@ const app = express();
 // MIDDLEWARE
 // ==========================================
 
+const configuredOrigins = process.env.FRONTEND_URL
+  ? process.env.FRONTEND_URL.split(",").map((item) => item.trim().replace(/\/+$/, ""))
+  : ["http://localhost:5173"];
+
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:5173",
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+
+      const cleanOrigin = origin.replace(/\/+$/, "");
+
+      if (
+        configuredOrigins.includes("*") ||
+        configuredOrigins.includes(cleanOrigin) ||
+        cleanOrigin.endsWith(".vercel.app") ||
+        cleanOrigin.endsWith(".netlify.app") ||
+        cleanOrigin.endsWith(".onrender.com") ||
+        cleanOrigin.includes("localhost") ||
+        process.env.NODE_ENV !== "production"
+      ) {
+        return callback(null, true);
+      }
+
+      return callback(new Error(`CORS blocked for origin: ${origin}`));
+    },
+    credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })

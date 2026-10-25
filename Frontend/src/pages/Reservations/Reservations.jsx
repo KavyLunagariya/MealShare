@@ -3,8 +3,9 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import "./Reservations.css";
+import { API_ENDPOINTS } from "../../config/api";
 
-const API_URL = "http://localhost:5000/api/reservations";
+const API_URL = API_ENDPOINTS.RESERVATIONS;
 
 const STATUSES = ["Pending", "Confirmed", "Picked Up", "Cancelled"];
 

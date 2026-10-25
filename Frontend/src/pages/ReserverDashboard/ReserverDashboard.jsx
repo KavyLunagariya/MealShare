@@ -3,8 +3,9 @@ import { useNavigate } from "react-router-dom";
 import AccountMenu from "../../components/AccountMenu";
 import { useAuth } from "../../context/AuthContext";
 import "./ReserverDashboard.css";
+import { API_BASE_URL } from "../../config/api";
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = API_BASE_URL;
 
 function formatDate(dateValue) {
   if (!dateValue) return "Date not available";

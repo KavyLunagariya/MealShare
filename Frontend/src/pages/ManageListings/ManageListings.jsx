@@ -3,8 +3,9 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import "./ManageListings.css";
+import { API_ENDPOINTS } from "../../config/api";
 
-const API_URL = "http://localhost:5000/api/meals";
+const API_URL = API_ENDPOINTS.MEALS;
 
 function getListingStatus(listing) {
   const quantity = Number(listing.quantity ?? listing.mealsLeft ?? 0);

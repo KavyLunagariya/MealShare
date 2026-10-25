@@ -11,8 +11,9 @@ import {
 import "leaflet/dist/leaflet.css";
 import "./CreateListing.css";
 import { useAuth } from "../../context/AuthContext";
+import { API_ENDPOINTS } from "../../config/api";
 
-const API_URL = "http://localhost:5000/api/meals";
+const API_URL = API_ENDPOINTS.MEALS;
 const DEFAULT_LOCATION = [22.3072, 73.1812];
 
 function MapClickHandler({ onSelect }) {

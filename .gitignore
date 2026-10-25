@@ -7,15 +7,25 @@ backend/node_modules/
 dist/
 Frontend/dist/
 dist-ssr/
-*.local
+build/
 
-# Environment variables
+# Environment variables & secrets (CRITICAL FOR SAFETY)
 .env
 .env.*
-backend/.env
-backend/.env.*
+*.env
+**/.env
+**/.env.*
+**/.env.local
+**/.env.development.local
+**/.env.test.local
+**/.env.production.local
+*.pem
+*.key
+*.cert
+
+# Do not ignore example templates
+!**/.env.example
 !.env.example
-!backend/.env.example
 
 # Logs
 logs/

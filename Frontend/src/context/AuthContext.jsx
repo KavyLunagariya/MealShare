@@ -6,11 +6,13 @@ import {
   useState,
 } from "react";
 
+import { API_ENDPOINTS } from "../config/api";
+
 const AUTH_STORAGE_KEY = "mealshare_auth";
 const TOKEN_STORAGE_KEY = "mealshare_token";
 const AUTH_EVENT = "mealshare-auth-changed";
 
-const API_URL = "http://localhost:5000/api/auth";
+const API_URL = API_ENDPOINTS.AUTH;
 
 const AuthContext = createContext(null);
 

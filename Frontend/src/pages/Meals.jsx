@@ -4,8 +4,9 @@ import { useLocation } from "react-router-dom";
 import FilterBar from "./home/components/FilterBar";
 import MealCard from "./home/components/MealCard";
 import CartModal from "./home/components/CartModal";
+import { API_BASE_URL } from "../config/api";
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = API_BASE_URL;
 
 function normalizeListing(listing) {
   const quantity = Number(
