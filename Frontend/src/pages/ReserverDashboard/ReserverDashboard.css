@@ -1,0 +1,964 @@
+.dashboard-page {
+  min-height: 100vh;
+  width: 100%;
+  background: #f7f1e8;
+  color: #30090f;
+  padding: 40px 0 90px;
+}
+
+.dashboard-container {
+  width: min(1180px, 90%);
+  margin: 0 auto;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.dashboard-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.dashboard-eyebrow {
+  display: block;
+  margin-bottom: 14px;
+  color: #7d1f2a;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(38px, 5vw, 64px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.dashboard-header h1 span {
+  color: #7d1f2a;
+  font-style: italic;
+}
+
+.dashboard-header p {
+  margin: 18px 0 0;
+  color: #745f60;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+.dashboard-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 210px;
+  padding: 12px 16px;
+  border: 1px solid rgba(48, 9, 15, 0.1);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.profile-avatar {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  place-items: center;
+  border-radius: 50%;
+  background: #7d1f2a;
+  color: #fff;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 19px;
+}
+
+.profile-info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.profile-info strong {
+  color: #30090f;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+}
+
+.profile-info span {
+  color: #8c7777;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+}
+
+.profile-arrow {
+  color: #7d1f2a;
+  font-size: 18px;
+}
+
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.dashboard-stat-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 28px;
+  border: 1px solid rgba(48, 9, 15, 0.08);
+  border-radius: 24px;
+  background: #fffaf3;
+  box-shadow: 0 12px 35px rgba(48, 9, 15, 0.05);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.dashboard-stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(48, 9, 15, 0.09);
+}
+
+.stat-icon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  place-items: center;
+  border-radius: 50%;
+  background: #f1dfe0;
+  color: #7d1f2a;
+  font-size: 22px;
+}
+
+.stat-content strong {
+  display: block;
+  color: #30090f;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 34px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.stat-content h2 {
+  margin: 7px 0 4px;
+  color: #51202a;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.stat-content p {
+  margin: 0;
+  color: #927b7b;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   MAIN DASHBOARD GRID
+========================================================= */
+
+.dashboard-main-grid {
+  display: grid;
+  grid-template-columns: 1.65fr 1fr;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.dashboard-card {
+  border: 1px solid rgba(48, 9, 15, 0.08);
+  border-radius: 26px;
+  background: #fffaf3;
+  box-shadow: 0 12px 35px rgba(48, 9, 15, 0.05);
+}
+
+
+/* =========================================================
+   CARD HEADING
+========================================================= */
+
+.dashboard-card-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.card-eyebrow {
+  display: block;
+  margin-bottom: 8px;
+  color: #7d1f2a;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.17em;
+}
+
+.dashboard-card-heading h2 {
+  margin: 0;
+  color: #30090f;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 28px;
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   UPCOMING MEAL
+========================================================= */
+
+.upcoming-meal-card {
+  padding: 30px;
+}
+
+.meal-status {
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: #f1dfe0;
+  color: #7d1f2a;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.upcoming-meal-content {
+  display: flex;
+  gap: 22px;
+}
+
+.upcoming-meal-image {
+  display: grid;
+  width: 150px;
+  min-height: 150px;
+  flex-shrink: 0;
+  place-items: center;
+  border-radius: 20px;
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #f4d7bd,
+      transparent 28%
+    ),
+    #ead8c8;
+}
+
+.upcoming-meal-image span {
+  font-size: 58px;
+}
+
+.upcoming-meal-details {
+  padding-top: 4px;
+}
+
+.meal-category {
+  color: #9a7777;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.upcoming-meal-details h3 {
+  margin: 9px 0 5px;
+  color: #30090f;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.meal-partner {
+  margin: 0;
+  color: #806b6b;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+
+.pickup-info {
+  display: flex;
+  gap: 30px;
+  margin-top: 25px;
+}
+
+.pickup-info div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.pickup-info span {
+  color: #9a8585;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+}
+
+.pickup-info strong {
+  color: #51202a;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.dashboard-primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 28px;
+  padding: 13px 20px;
+  border: 0;
+  border-radius: 999px;
+  background: #7d1f2a;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
+}
+
+.dashboard-primary-button:hover {
+  transform: translateY(-2px);
+  background: #641722;
+}
+
+.dashboard-primary-button span {
+  font-size: 16px;
+}
+
+.dashboard-text-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.dashboard-text-button span {
+  font-size: 16px;
+}
+
+.view-all-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #7d1f2a;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.view-all-button span {
+  font-size: 16px;
+}
+
+
+/* =========================================================
+   IMPACT CARD
+========================================================= */
+
+.impact-preview-card {
+  padding: 30px;
+  background: #3a0d14;
+  color: #fff;
+}
+
+.impact-preview-card .card-eyebrow {
+  color: #e7bfc0;
+}
+
+.impact-preview-card h2 {
+  margin: 0;
+  color: #fff;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1.05;
+}
+
+.impact-preview-card h2 span {
+  color: #eaa3a7;
+  font-style: italic;
+}
+
+.impact-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  width: 115px;
+  height: 115px;
+  margin: 28px 0 20px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+}
+
+.impact-circle strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.impact-circle span {
+  color: #dfc5c5;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 9px;
+}
+
+.impact-preview-card > p {
+  max-width: 280px;
+  margin: 0;
+  color: #d8c0c0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   RECENT RESERVATIONS
+========================================================= */
+
+.recent-reservations-card {
+  padding: 30px;
+  margin-bottom: 30px;
+}
+
+.recent-reservations {
+  display: flex;
+  flex-direction: column;
+}
+
+.reservation-row {
+  display: grid;
+  grid-template-columns: 48px minmax(180px, 1fr) 150px 90px;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 0;
+  border-top: 1px solid rgba(48, 9, 15, 0.08);
+}
+
+.reservation-row:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.reservation-row:last-child {
+  padding-bottom: 0;
+}
+
+.reservation-icon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border-radius: 15px;
+  background: #ead8c8;
+  font-size: 22px;
+}
+
+.reservation-info h3 {
+  margin: 0 0 5px;
+  color: #30090f;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.reservation-info p {
+  margin: 0;
+  color: #8c7777;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+}
+
+.reservation-date {
+  color: #806b6b;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+}
+
+.reservation-status {
+  justify-self: end;
+  padding: 7px 11px;
+  border-radius: 999px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.reservation-status.reserved {
+  background: #f1dfe0;
+  color: #7d1f2a;
+}
+
+.reservation-status.collected {
+  background: #e7eadf;
+  color: #586044;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 850px) {
+
+  .dashboard-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-main-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .reservation-row {
+    grid-template-columns: 48px minmax(160px, 1fr) 110px;
+  }
+
+  .reservation-status {
+    grid-column: 3;
+  }
+}
+
+
+@media (max-width: 760px) {
+
+  .dashboard-page {
+    padding-top: 120px;
+  }
+
+  .dashboard-header {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 45px;
+  }
+
+  .dashboard-profile {
+    width: 100%;
+  }
+}
+
+
+@media (max-width: 560px) {
+
+  .upcoming-meal-content {
+    flex-direction: column;
+  }
+
+  .upcoming-meal-image {
+    width: 100%;
+  }
+
+  .pickup-info {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .dashboard-card-heading {
+    flex-direction: column;
+  }
+
+  .recent-reservations-card {
+    padding: 22px;
+  }
+
+  .reservation-row {
+    grid-template-columns: 42px 1fr;
+    gap: 12px;
+  }
+
+  .reservation-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .reservation-date {
+    grid-column: 2;
+  }
+
+  .reservation-status {
+    grid-column: 2;
+    justify-self: start;
+  }
+}
+
+
+@media (max-width: 400px) {
+
+  .dashboard-container {
+    width: 92%;
+  }
+
+  .dashboard-header h1 {
+    font-size: 38px;
+  }
+
+  .dashboard-stat-card {
+    padding: 22px;
+  }
+
+  .upcoming-meal-card,
+  .impact-preview-card {
+    padding: 22px;
+  }
+
+  .dashboard-card-heading h2 {
+    font-size: 24px;
+  }
+
+  .upcoming-meal-details h3 {
+    font-size: 22px;
+  }
+}
+/* =========================================================
+   QUICK ACTIONS
+========================================================= */
+
+.quick-actions-card {
+  padding: 30px;
+  margin-bottom: 30px;
+}
+
+.quick-actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.quick-action {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 82px;
+  padding: 16px;
+  border: 1px solid rgba(48, 9, 15, 0.08);
+  border-radius: 18px;
+  background: #fff;
+  color: #30090f;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.quick-action:hover {
+  transform: translateY(-3px);
+  border-color: rgba(125, 31, 42, 0.25);
+  box-shadow: 0 12px 28px rgba(48, 9, 15, 0.07);
+}
+
+.quick-action-icon {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  place-items: center;
+  border-radius: 13px;
+  background: #f1dfe0;
+  color: #7d1f2a;
+  font-size: 19px;
+}
+
+.quick-action-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.quick-action-content strong {
+  color: #30090f;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+
+.quick-action-content small {
+  color: #927b7b;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.quick-action-arrow {
+  color: #7d1f2a;
+  font-size: 17px;
+}
+
+@media (max-width: 850px) {
+  .quick-actions {
+    grid-template-columns: 1fr;
+  }
+}
+/* =========================================
+   MEALSHARE — UPCOMING MEAL CARD POLISH
+========================================= */
+
+.upcoming-meal-card {
+  min-width: 0;
+  padding: 32px 36px;
+  overflow: hidden;
+}
+
+.upcoming-meal-card .dashboard-card-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 26px;
+}
+
+.upcoming-meal-card .dashboard-card-heading h2 {
+  margin: 8px 0 0;
+  color: #57232d;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(26px, 2.5vw, 34px);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.upcoming-meal-card .meal-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-height: 32px;
+  padding: 7px 15px;
+  border: 1px solid #f0d9d9;
+  border-radius: 999px;
+  background: #f7e4e5;
+  color: #8c2032;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Organized grid for meal, pickup, date and total */
+.upcoming-meal-card .upcoming-meal-content {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 14px;
+  min-width: 0;
+  margin-bottom: 24px;
+}
+
+/* Meal information occupies the full first row */
+.upcoming-meal-card .upcoming-meal-content > div {
+  grid-column: 1 / -1;
+  min-width: 0;
+  margin: 0 !important;
+  padding: 17px;
+  border: 1px solid #f0e3da;
+  border-radius: 15px;
+  background: #fffaf5;
+}
+
+/* Meal thumbnail */
+.upcoming-meal-card .upcoming-meal-content img {
+  display: block;
+  flex-shrink: 0;
+  width: 92px !important;
+  min-width: 92px;
+  height: 92px !important;
+  border: 1px solid #edddd3;
+  border-radius: 13px !important;
+  object-fit: cover;
+}
+
+/* Meal title and donor details */
+.upcoming-meal-card .upcoming-meal-content h3 {
+  margin: 0 0 8px !important;
+  color: #57232d;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.upcoming-meal-card .upcoming-meal-content > div p {
+  margin: 5px 0 !important;
+  color: #88675f;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* Pickup, reservation date and total information cards */
+.upcoming-meal-card .upcoming-meal-content > p {
+  min-width: 0;
+  min-height: 94px;
+  margin: 0 !important;
+  padding: 15px;
+  border: 1px solid #f0e3da;
+  border-radius: 13px;
+  background: #f8f0e9;
+  color: #79554f;
+  font-size: 12px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+/* Distinguish the information labels */
+.upcoming-meal-card .upcoming-meal-content > p strong {
+  color: #57232d;
+}
+
+/* Primary action */
+.upcoming-meal-card > .dashboard-primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  min-height: 48px;
+  padding: 0 22px;
+  border: 1px solid #842034;
+  border-radius: 999px;
+  background: #842034;
+  color: #fff;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.upcoming-meal-card > .dashboard-primary-button span {
+  font-size: 19px;
+  transition: transform 0.2s ease;
+}
+
+.upcoming-meal-card > .dashboard-primary-button:hover {
+  background: #651626;
+  box-shadow: 0 7px 18px rgba(132, 32, 52, 0.18);
+  transform: translateY(-2px);
+}
+
+.upcoming-meal-card > .dashboard-primary-button:hover span {
+  transform: translateX(4px);
+}
+
+/* Empty and loading messages */
+.upcoming-meal-card .upcoming-meal-content > p:only-child {
+  grid-column: 1 / -1;
+  min-height: auto;
+  padding: 20px;
+  background: #fffaf5;
+  color: #88675f;
+  font-size: 14px;
+}
+
+/* =========================================
+   RESPONSIVE LAYOUT
+========================================= */
+
+@media (max-width: 900px) {
+  .upcoming-meal-card {
+    padding: 27px 24px;
+  }
+
+  .upcoming-meal-card .upcoming-meal-content {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .upcoming-meal-card .upcoming-meal-content > p:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 560px) {
+  .upcoming-meal-card {
+    padding: 22px 17px;
+  }
+
+  .upcoming-meal-card .dashboard-card-heading {
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .upcoming-meal-card .dashboard-card-heading h2 {
+    font-size: 25px;
+  }
+
+  .upcoming-meal-card .meal-status {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .upcoming-meal-card .upcoming-meal-content {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .upcoming-meal-card .upcoming-meal-content > div {
+    padding: 12px;
+  }
+
+  .upcoming-meal-card .upcoming-meal-content img {
+    width: 76px !important;
+    min-width: 76px;
+    height: 76px !important;
+  }
+
+  .upcoming-meal-card .upcoming-meal-content h3 {
+    font-size: 18px;
+  }
+
+  .upcoming-meal-card .upcoming-meal-content > p,
+  .upcoming-meal-card .upcoming-meal-content > p:last-child {
+    grid-column: auto;
+    min-height: auto;
+    padding: 13px;
+  }
+
+  .upcoming-meal-card > .dashboard-primary-button {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
