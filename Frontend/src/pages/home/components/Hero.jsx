@@ -44,8 +44,6 @@ function Hero() {
             </h3>
 
             <p>From local businesses</p>
-
-            <span className="rescued-arrow">→</span>
           </div>
         </div>
       </div>
