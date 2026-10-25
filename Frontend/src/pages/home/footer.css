@@ -9,16 +9,12 @@
   width: 100%;
 
   background:
-    radial-gradient(
-      circle at 85% 18%,
+    radial-gradient(circle at 85% 18%,
       rgba(222, 58, 75, 0.16),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 12% 75%,
+      transparent 28%),
+    radial-gradient(circle at 12% 75%,
       rgba(181, 42, 58, 0.1),
-      transparent 25%
-    ),
+      transparent 25%),
     #30090f;
 
   color: #f8eee5;
@@ -51,8 +47,7 @@
   z-index: 1;
 
   border:
-    1px solid
-    rgba(239, 72, 88, 0.16);
+    1px solid rgba(239, 72, 88, 0.16);
 
   border-radius: 50%;
 
@@ -82,32 +77,30 @@
 }
 
 @keyframes footerOrbitOne {
+
   0%,
   100% {
     transform:
-      rotate(0deg)
-      translate(0, 0);
+      rotate(0deg) translate(0, 0);
   }
 
   50% {
     transform:
-      rotate(14deg)
-      translate(-25px, 25px);
+      rotate(14deg) translate(-25px, 25px);
   }
 }
 
 @keyframes footerOrbitTwo {
+
   0%,
   100% {
     transform:
-      rotate(0deg)
-      translate(0, 0);
+      rotate(0deg) translate(0, 0);
   }
 
   50% {
     transform:
-      rotate(-12deg)
-      translate(25px, -20px);
+      rotate(-12deg) translate(25px, -20px);
   }
 }
 
@@ -128,8 +121,7 @@
   pointer-events: none;
 
   text-shadow:
-    0 0 15px
-    rgba(239, 75, 91, 0.55);
+    0 0 15px rgba(239, 75, 91, 0.55);
 }
 
 .footer-spark-one {
@@ -151,42 +143,38 @@
 }
 
 @keyframes footerSparkOne {
+
   0%,
   100% {
     opacity: 0.35;
 
     transform:
-      translate(0, 0)
-      rotate(0deg)
-      scale(0.8);
+      translate(0, 0) rotate(0deg) scale(0.8);
   }
 
   50% {
     opacity: 1;
 
     transform:
-      translate(18px, -25px)
-      rotate(90deg)
-      scale(1.35);
+      translate(18px, -25px) rotate(90deg) scale(1.35);
   }
 }
 
 @keyframes footerSparkTwo {
+
   0%,
   100% {
     opacity: 0.25;
 
     transform:
-      translate(0, 0)
-      scale(0.7);
+      translate(0, 0) scale(0.7);
   }
 
   50% {
     opacity: 0.9;
 
     transform:
-      translate(-20px, 18px)
-      scale(1.3);
+      translate(-20px, 18px) scale(1.3);
   }
 }
 
@@ -210,16 +198,14 @@
   pointer-events: none;
 
   filter:
-    drop-shadow(
-      0 0 14px
-      rgba(239, 75, 91, 0.55)
-    );
+    drop-shadow(0 0 14px rgba(239, 75, 91, 0.55));
 
   animation:
     footerHeartBeat 1.7s ease-in-out infinite;
 }
 
 @keyframes footerHeartBeat {
+
   0%,
   100% {
     transform: scale(0.9);
@@ -251,17 +237,12 @@
   display: grid;
 
   grid-template-columns:
-    1.8fr
-    1fr
-    1fr
-    1fr;
+    1.8fr 1fr 1fr 1fr;
 
   gap: 55px;
 
   padding:
-    100px
-    0
-    80px;
+    100px 0 80px;
 }
 
 
@@ -300,8 +281,7 @@
   height: 40px;
 
   border:
-    1px solid
-    rgba(239, 75, 91, 0.5);
+    1px solid rgba(239, 75, 91, 0.5);
 
   border-radius: 50%;
 
@@ -316,17 +296,16 @@
 }
 
 @keyframes logoFloat {
+
   0%,
   100% {
     transform:
-      rotate(-20deg)
-      translateY(0);
+      rotate(-20deg) translateY(0);
   }
 
   50% {
     transform:
-      rotate(-5deg)
-      translateY(-5px);
+      rotate(-5deg) translateY(-5px);
   }
 }
 
@@ -356,9 +335,7 @@
   max-width: 430px;
 
   margin:
-    28px
-    0
-    25px;
+    28px 0 25px;
 
   color: #bda7aa;
 
@@ -417,15 +394,12 @@
   padding-left: 28px;
 
   border-left:
-    1px solid
-    rgba(255, 255, 255, 0.11);
+    1px solid rgba(255, 255, 255, 0.11);
 }
 
 .footer-column h3 {
   margin:
-    0
-    0
-    25px;
+    0 0 25px;
 
   color: #fff;
 
@@ -481,8 +455,7 @@
   opacity: 0;
 
   transform:
-    translateY(-50%)
-    scale(0);
+    translateY(-50%) scale(0);
 
   transition:
     opacity 0.25s ease,
@@ -499,8 +472,7 @@
   opacity: 1;
 
   transform:
-    translateY(-50%)
-    scale(1);
+    translateY(-50%) scale(1);
 }
 
 
@@ -512,8 +484,7 @@
   display: grid;
 
   grid-template-columns:
-    1.5fr
-    0.7fr;
+    1.5fr 0.7fr;
 
   gap: 70px;
 
@@ -521,21 +492,17 @@
     45px 50px;
 
   border:
-    1px solid
-    rgba(255, 255, 255, 0.12);
+    1px solid rgba(255, 255, 255, 0.12);
 
   border-radius: 28px;
 
   background:
-    linear-gradient(
-      110deg,
+    linear-gradient(110deg,
       rgba(255, 255, 255, 0.035),
-      rgba(226, 53, 70, 0.09)
-    );
+      rgba(226, 53, 70, 0.09));
 
   box-shadow:
-    0 25px 70px
-    rgba(0, 0, 0, 0.14);
+    0 25px 70px rgba(0, 0, 0, 0.14);
 }
 
 
@@ -583,9 +550,7 @@
 
 .footer-newsletter p {
   margin:
-    10px
-    0
-    25px;
+    10px 0 25px;
 
   color: #bda7aa;
 
@@ -598,8 +563,7 @@
   max-width: 550px;
 
   border-bottom:
-    1px solid
-    rgba(255, 255, 255, 0.28);
+    1px solid rgba(255, 255, 255, 0.28);
 }
 
 .footer-form input {
@@ -674,22 +638,19 @@
   padding-left: 35px;
 
   border-left:
-    1px solid
-    rgba(255, 255, 255, 0.11);
+    1px solid rgba(255, 255, 255, 0.11);
 }
 
 .footer-contact h4 {
   margin:
-    0
-    0
-    12px;
+    0 0 12px;
 
   color: #fff;
 
   font-size: 15px;
 }
 
-.footer-contact > a {
+.footer-contact>a {
   display: block;
 
   margin-bottom: 7px;
@@ -703,7 +664,7 @@
   transition: color 0.25s ease;
 }
 
-.footer-contact > a:hover {
+.footer-contact>a:hover {
   color: #fff;
 }
 
@@ -730,8 +691,7 @@
   height: 34px;
 
   border:
-    1px solid
-    rgba(255, 255, 255, 0.2);
+    1px solid rgba(255, 255, 255, 0.2);
 
   border-radius: 50%;
 
@@ -767,9 +727,7 @@
 
 .footer-wordmark {
   padding:
-    90px
-    0
-    35px;
+    90px 0 35px;
 
   text-align: center;
 }
@@ -788,20 +746,16 @@
   height: 1px;
 
   background:
-    linear-gradient(
-      90deg,
+    linear-gradient(90deg,
       transparent,
-      rgba(239, 75, 91, 0.35)
-    );
+      rgba(239, 75, 91, 0.35));
 }
 
 .footer-wordmark-line span:last-child {
   background:
-    linear-gradient(
-      90deg,
+    linear-gradient(90deg,
       rgba(239, 75, 91, 0.35),
-      transparent
-    );
+      transparent);
 }
 
 .footer-wordmark-line strong {
@@ -810,16 +764,14 @@
   font-size: 24px;
 
   filter:
-    drop-shadow(
-      0 0 13px
-      rgba(239, 75, 91, 0.6)
-    );
+    drop-shadow(0 0 13px rgba(239, 75, 91, 0.6));
 
   animation:
     footerWordmarkHeart 1.6s ease-in-out infinite;
 }
 
 @keyframes footerWordmarkHeart {
+
   0%,
   100% {
     transform: scale(0.9);
@@ -860,21 +812,19 @@
 
   font-weight: 700;
 
-  line-height: 0.76;
+  line-height: 0.88;
 
   letter-spacing: -0.085em;
 
   background:
-    linear-gradient(
-      105deg,
+    linear-gradient(105deg,
       #791321 0%,
       #d92d41 16%,
       #ff6976 31%,
       #a21b2e 47%,
       #ef4052 62%,
       #ff7883 77%,
-      #77111f 92%
-    );
+      #77111f 92%);
 
   background-size: 400% 100%;
 
@@ -887,10 +837,7 @@
     mealshareFooterGradient 4s linear infinite;
 
   filter:
-    drop-shadow(
-      0 10px 25px
-      rgba(224, 58, 75, 0.18)
-    );
+    drop-shadow(0 10px 25px rgba(224, 58, 75, 0.18));
 }
 
 @keyframes mealshareFooterGradient {
@@ -909,9 +856,7 @@
 
 .footer-wordmark p {
   margin:
-    25px
-    0
-    0;
+    25px 0 0;
 
   color: #e14a58;
 
@@ -924,8 +869,7 @@
 
 .footer-wordmark p span {
   margin:
-    0
-    10px;
+    0 10px;
 
   color: #774047;
 }
@@ -945,13 +889,10 @@
   gap: 25px;
 
   padding:
-    22px
-    0
-    28px;
+    22px 0 28px;
 
   border-top:
-    1px solid
-    rgba(255, 255, 255, 0.1);
+    1px solid rgba(255, 255, 255, 0.1);
 
   color: #72595d;
 
@@ -985,9 +926,7 @@
 
   .footer-main {
     grid-template-columns:
-      1.5fr
-      1fr
-      1fr;
+      1.5fr 1fr 1fr;
   }
 
   .footer-brand {
@@ -1003,10 +942,14 @@
     padding-left: 0;
 
     border-top:
-      1px solid
-      rgba(255, 255, 255, 0.11);
+      1px solid rgba(255, 255, 255, 0.11);
 
     border-left: none;
+  }
+
+  .footer-wordmark-text {
+    font-size: clamp(56px, 11vw, 110px);
+    line-height: 0.88;
   }
 }
 
@@ -1027,9 +970,7 @@
     gap: 45px 25px;
 
     padding:
-      70px
-      0
-      55px;
+      70px 0 55px;
   }
 
   .footer-brand {
@@ -1057,13 +998,17 @@
 
   .footer-wordmark {
     padding:
-      70px
-      0
-      30px;
+      70px 0 30px;
   }
 
   .footer-wordmark-text {
-    font-size: 76px;
+    font-size: clamp(36px, 11.5vw, 56px);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    margin-top: 16px;
+    white-space: nowrap;
+    max-width: 100%;
   }
 
   .footer-wordmark p {
