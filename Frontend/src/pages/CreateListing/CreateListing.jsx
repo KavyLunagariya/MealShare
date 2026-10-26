@@ -76,6 +76,15 @@ function CreateListing() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
+  useEffect(() => {
+    if (errorMessage) {
+      const errorEl = document.querySelector(".listing-error");
+      if (errorEl) {
+        errorEl.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    }
+  }, [errorMessage]);
+
   const handleBack = () => {
     if (window.history.length > 1) {
       navigate(-1);
@@ -90,8 +99,8 @@ function CreateListing() {
 
     if (!file) return;
 
-    if (file.size > 5 * 1024 * 1024) {
-      setErrorMessage("Please choose an image smaller than 5 MB.");
+    if (file.size > 10 * 1024 * 1024) {
+      setErrorMessage("Please choose an image smaller than 10 MB.");
       event.target.value = "";
       return;
     }
@@ -108,7 +117,36 @@ function CreateListing() {
 
     const reader = new FileReader();
 
-    reader.onload = () => setPhoto(reader.result);
+    reader.onload = () => {
+      const img = new Image();
+      img.onload = () => {
+        // Optimize dimensions to keep payload clean and fast
+        const maxDimension = 1200;
+        let width = img.width;
+        let height = img.height;
+
+        if (width > maxDimension || height > maxDimension) {
+          if (width > height) {
+            height = Math.round((height * maxDimension) / width);
+            width = maxDimension;
+          } else {
+            width = Math.round((width * maxDimension) / height);
+            height = maxDimension;
+          }
+        }
+
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, width, height);
+
+        const compressed = canvas.toDataURL("image/jpeg", 0.85);
+        setPhoto(compressed);
+      };
+      img.onerror = () => setPhoto(reader.result);
+      img.src = reader.result;
+    };
     reader.onerror = () =>
       setErrorMessage("Could not read this image. Please try another.");
 
@@ -119,9 +157,18 @@ function CreateListing() {
     event.preventDefault();
     setErrorMessage("");
 
-    if (!user?.id) {
+    const userId = user?.id || user?._id;
+    if (!userId) {
       setErrorMessage(
         "Your login session does not contain a user ID. Please log in again."
+      );
+      return;
+    }
+
+    const token = localStorage.getItem("mealshare_token");
+    if (!token) {
+      setErrorMessage(
+        "Authentication token not found. Please log in again."
       );
       return;
     }
@@ -177,16 +224,6 @@ function CreateListing() {
       return;
     }
 
-    // The current Meal API expects an image URL or string.
-    // A browser data URL can be too large for production storage.
-    // We enforce a conservative limit until image hosting is connected.
-    if (photo.startsWith("data:") && photo.length > 700000) {
-      setErrorMessage(
-        "This image is too large to send directly. Please upload a smaller image."
-      );
-      return;
-    }
-
     const listing = {
       title: mealName.trim(),
       description: description.trim(),
@@ -197,28 +234,25 @@ function CreateListing() {
       quantity: Number(quantity),
       available: Number(quantity) > 0,
       business: restaurantName.trim(),
-      restaurantId: user.id,
+      restaurantId: userId,
       address: address.trim(),
-      phone: user.phone || "",
+      phone: user.phone || user.contactNumber || "",
       pickupTime: `${pickupDate} · ${pickupTime}`,
     };
 
     try {
       setIsPublishing(true);
 
-      // Existing backend has POST /api/meals for creating listings.
-      // Editing requires a backend PUT endpoint, which has not been added yet.
-      if (editingListing) {
-        setErrorMessage(
-          "Editing existing database listings is not connected yet. Create a new listing for now."
-        );
-        return;
-      }
+      const isEditing = Boolean(editingListing?._id || editingListing?.id);
+      const targetId = editingListing?._id || editingListing?.id;
+      const endpoint = isEditing ? `${API_URL}/${targetId}` : API_URL;
+      const method = isEditing ? "PUT" : "POST";
 
-      const response = await fetch(API_URL, {
-        method: "POST",
+      const response = await fetch(endpoint, {
+        method,
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(listing),
       });

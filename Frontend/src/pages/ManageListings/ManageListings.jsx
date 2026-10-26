@@ -107,7 +107,8 @@ function ManageListings() {
   };
 
   const loadListings = useCallback(async () => {
-    if (!user?.id) {
+    const userId = user?.id || user?._id;
+    if (!userId) {
       setListings([]);
       setError("Your account ID is missing. Please log out and log in again.");
       setLoading(false);
@@ -118,16 +119,16 @@ function ManageListings() {
       setLoading(true);
       setError("");
 
-     const token = localStorage.getItem("mealshare_token");
+      const token = localStorage.getItem("mealshare_token");
 
-const response = await fetch(
-  `${API_URL}/restaurant/${encodeURIComponent(user.id)}`,
-  {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  }
-);
+      const response = await fetch(
+        `${API_URL}/restaurant/${encodeURIComponent(userId)}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       const result = await response.json();
 

@@ -112,7 +112,8 @@ function FoodListerDashboard() {
   // LOAD REAL MEAL LISTINGS
   // ==========================================
   const loadListings = useCallback(async () => {
-    if (!user?.id) {
+    const userId = user?.id || user?._id;
+    if (!userId) {
       setListings([]);
       setListingsError(
         "Your account ID is missing. Please log out and log in again."
@@ -125,21 +126,20 @@ function FoodListerDashboard() {
       setListingsError("");
       setLoadingListings(true);
 
-      
-        const token = localStorage.getItem("mealshare_token");
+      const token = localStorage.getItem("mealshare_token");
 
-if (!token) {
-  throw new Error("Your login session has expired. Please log in again.");
-}
+      if (!token) {
+        throw new Error("Your login session has expired. Please log in again.");
+      }
 
-const response = await fetch(
-  `${API_URL}/meals/restaurant/${encodeURIComponent(user.id)}`,
-  {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  }
-);
+      const response = await fetch(
+        `${API_URL}/meals/restaurant/${encodeURIComponent(userId)}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       const result = await response.json();
 
@@ -162,7 +162,7 @@ const response = await fetch(
     } finally {
       setLoadingListings(false);
     }
-  }, [user?.id]);
+  }, [user?.id, user?._id]);
 
   useEffect(() => {
     loadListings();
@@ -185,7 +185,8 @@ const response = await fetch(
   // LOAD REAL RESERVATIONS FROM MONGODB
   // ==========================================
   const loadReservations = useCallback(async (signal) => {
-    if (!user?.id) {
+    const userId = user?.id || user?._id;
+    if (!userId) {
       setReservations([]);
       setReservationsError(
         "Your account ID is missing. Please log in again."
@@ -198,19 +199,17 @@ const response = await fetch(
       setReservationsError("");
       setLoadingReservations(true);
 
-      
-const token = localStorage.getItem("mealshare_token");
+      const token = localStorage.getItem("mealshare_token");
 
-const response = await fetch(
-  `${API_URL}/reservations/restaurant/${encodeURIComponent(user.id)}`,
-  {
-    signal,
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  }
-);
-
+      const response = await fetch(
+        `${API_URL}/reservations/restaurant/${encodeURIComponent(userId)}`,
+        {
+          signal,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       const result = await response.json();
 

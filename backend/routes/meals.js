@@ -157,6 +157,79 @@ router.post(
   }
 );
 
+// UPDATE a meal — its owner only
+router.put(
+  "/:id",
+  protect,
+  allowRoles("food-lister"),
+  async (req, res) => {
+    try {
+      if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+        return res.status(400).json({
+          success: false,
+          message: "Invalid meal ID.",
+        });
+      }
+
+      const meal = await Meal.findOne({
+        _id: req.params.id,
+        restaurantId: req.user.id,
+      });
+
+      if (!meal) {
+        return res.status(404).json({
+          success: false,
+          message: "Meal not found in your listings.",
+        });
+      }
+
+      const {
+        title,
+        description,
+        category,
+        image,
+        price,
+        oldPrice,
+        quantity,
+        business,
+        address,
+        phone,
+        pickupTime,
+      } = req.body;
+
+      if (title !== undefined) meal.title = title.trim();
+      if (description !== undefined) meal.description = description ? description.trim() : "";
+      if (category !== undefined) meal.category = category;
+      if (image !== undefined) meal.image = image;
+      if (price !== undefined) meal.price = Number(price);
+      if (oldPrice !== undefined) meal.oldPrice = Number(oldPrice ?? 0);
+      if (quantity !== undefined) {
+        meal.quantity = Number(quantity);
+        meal.available = meal.quantity > 0;
+      }
+      if (business !== undefined) meal.business = business.trim();
+      if (address !== undefined) meal.address = address ? address.trim() : "";
+      if (phone !== undefined) meal.phone = phone || "";
+      if (pickupTime !== undefined) meal.pickupTime = pickupTime || "";
+
+      await meal.save();
+
+      return res.status(200).json({
+        success: true,
+        message: "Meal updated successfully.",
+        meal,
+      });
+    } catch (error) {
+      console.error("Update meal error:", error);
+
+      return res.status(500).json({
+        success: false,
+        message: "Could not update meal.",
+      });
+    }
+  }
+);
+
 // DELETE a meal — its owner only
 router.delete(
   "/:id",

@@ -44,7 +44,7 @@ function normalizeRole(role) {
 
 function saveSession(user, token) {
   const sessionUser = {
-    id: user.id,
+    id: user.id || user._id,
     name: user.name,
     email: user.email,
     role: user.role,
